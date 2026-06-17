@@ -57,7 +57,7 @@ const res = await axios.get(`${API_URL}/analysis`, {
     }, []);
 
     if (loading) {
-        return <div className="min-h-screen flex items-center justify-center bg-gray-50"><div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div></div>;
+        return <div className="min-h-screen page-content pt-20 flex items-center justify-center bg-gray-50"><div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div></div>;
     }
 
     // Process data for charts
@@ -69,7 +69,7 @@ const res = await axios.get(`${API_URL}/analysis`, {
     const avgScore = analyses.length ? Math.round(analyses.reduce((acc, curr) => acc + (curr.atsScore || curr.ats_score || 0), 0) / analyses.length) : 0;
 
     return (
-        <div className="min-h-screen bg-gray-50 p-6 md:p-12">
+        <div className="min-h-screen page-content pt-20 bg-gray-50 px-4 sm:px-6 lg:px-8 py-8 pb-20">
             <div className="max-w-6xl mx-auto space-y-8">
                 
                 <header>

@@ -77,7 +77,7 @@ const AnalysisHistory = () => {
 
         return (
 
-            <div className="min-h-screen flex justify-center items-center">
+            <div className="min-h-screen page-content pt-20 flex justify-center items-center bg-gray-50">
 
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
 
@@ -88,7 +88,7 @@ const AnalysisHistory = () => {
 
     return (
 
-        <div className="min-h-screen bg-gray-50 p-6">
+        <div className="min-h-screen page-content pt-20 bg-gray-50 px-4 sm:px-6 lg:px-8 py-8 pb-20">
 
             <div className="max-w-7xl mx-auto">
 
