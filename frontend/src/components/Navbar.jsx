@@ -1,8 +1,14 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useSidebar } from '../context/SidebarContext.jsx';
 import { FiLogOut, FiMenu, FiX } from 'react-icons/fi';
+import {
+  FiFileText,
+  FiHome,
+  FiSearch,
+  FiUpload
+} from 'react-icons/fi';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -16,9 +22,16 @@ const Navbar = () => {
 
   if (!user) return null;
 
+  const navItems = [
+    { path: '/dashboard', icon: FiHome, label: 'Dashboard' },
+    { path: '/upload', icon: FiUpload, label: 'Upload' },
+    { path: '/analyze', icon: FiSearch, label: 'Analyze' },
+    { path: '/builder', icon: FiFileText, label: 'Builder' },
+  ];
+
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg z-50 border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center gap-3">
             <button
@@ -35,13 +48,38 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <button
-            onClick={handleLogout}
-            className="flex items-center space-x-2 px-4 py-2.5 rounded-xl text-gray-700 hover:text-red-600 hover:bg-red-50 transition-all duration-200 font-semibold"
-          >
-            <FiLogOut size={20} />
-            <span className="hidden sm:inline">Logout</span>
-          </button>
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-1">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold transition-all duration-200 ${
+                        isActive
+                          ? 'bg-primary-50 text-primary-700'
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-primary-700'
+                      }`
+                    }
+                  >
+                    <Icon size={17} />
+                    <span>{item.label}</span>
+                  </NavLink>
+                );
+              })}
+            </div>
+
+            <button
+              onClick={handleLogout}
+              className="flex items-center space-x-2 px-4 py-2.5 rounded-xl text-gray-700 hover:text-red-600 hover:bg-red-50 transition-all duration-200 font-semibold"
+            >
+              <FiLogOut size={20} />
+              <span className="hidden sm:inline">Logout</span>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
